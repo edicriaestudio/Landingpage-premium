@@ -25,9 +25,10 @@ export default function Pricing() {
             </div>
 
             <ul className="space-y-3 mb-8 flex-grow text-sm font-dmsans">
-              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Cadastro no Aplicativo</li>
-              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Perfil Básico (Sem fotos extras)</li>
-              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Busca Simples</li>
+              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Ficha completa da empresa</li>
+              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Telefone, WhatsApp e endereço</li>
+              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Presença nas buscas da categoria</li>
+              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Página indexada no Google</li>
             </ul>
 
             <a 
@@ -42,7 +43,7 @@ export default function Pricing() {
 
           {/* Plano Performance (Central) */}
           <div className="bg-white/5 backdrop-blur-sm border border-brandGold/50 rounded-3xl p-8 flex flex-col hover:bg-white/10 transition-all duration-300 relative shadow-2xl transform md:-translate-y-4">
-            <h3 className="text-xl text-brandGold font-montserrat uppercase font-bold mb-2">Performance</h3>
+            <h3 className="text-xl text-brandGold font-montserrat uppercase font-bold mb-2">Destaque</h3>
             <p className="text-white/60 mb-6 text-xs">O ponto de equilíbrio perfeito para lotar seu WhatsApp.</p>
             
             <div className="mb-6 flex items-end gap-1">
@@ -52,10 +53,11 @@ export default function Pricing() {
             </div>
 
             <ul className="space-y-3 mb-8 flex-grow text-sm font-dmsans">
-              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> <span className="font-bold">Tudo do Grátis, mais:</span></li>
-              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Botão Direto para o seu WhatsApp</li>
-              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Galeria de Fotos Completa</li>
-              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Sistema de Avaliações Verificadas</li>
+              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> <span className="font-bold">Tudo do Plano Grátis, mais:</span></li>
+              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Selo de Destaque na ficha e listas</li>
+              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Prioridade no ranking da categoria</li>
+              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Ficha premium com galeria e tags</li>
+              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Presença nos destaques da Home</li>
             </ul>
 
             <a 
@@ -64,13 +66,13 @@ export default function Pricing() {
               rel="noopener noreferrer"
               className="w-full py-3 rounded-xl font-montserrat uppercase tracking-widest font-bold text-xs bg-brandGold text-brandDark hover:bg-white transition-all duration-300 text-center block"
             >
-              Assinar Performance
+              Assinar Destaque
             </a>
           </div>
 
           {/* Plano Enterprise */}
           <div className="bg-white/0 backdrop-blur-sm border border-white/5 rounded-3xl p-8 flex flex-col hover:border-brandGold/30 hover:bg-white/5 transition-all duration-300 relative shadow-2xl">
-            <h3 className="text-xl text-white font-montserrat uppercase font-bold mb-2">Enterprise</h3>
+            <h3 className="text-xl text-white font-montserrat uppercase font-bold mb-2">Patrocinado</h3>
             <p className="text-white/60 mb-6 text-xs">A máquina completa de atração e exposição VIP.</p>
             
             <div className="mb-6 flex items-end gap-1">
@@ -80,10 +82,11 @@ export default function Pricing() {
             </div>
 
             <ul className="space-y-3 mb-8 flex-grow text-sm font-dmsans">
-              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> <span className="font-bold">Tudo do Performance, mais:</span></li>
-              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Topo absoluto na sua Categoria</li>
-              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Divulgação nas nossas Redes</li>
-              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> 1 Reels Premium /mês Exclusivo</li>
+              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> <span className="font-bold">Tudo do Plano Destaque, mais:</span></li>
+              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Selo Patrocinado e 1ª Posição</li>
+              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Card fixo e Banner exclusivo</li>
+              <li className="flex items-start gap-3 text-white/90"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Relatório mensal de visualizações</li>
+              <li className="flex items-start gap-3 text-brandGold font-bold"><CheckCircle2 className="text-brandGold shrink-0" size={16} /> Bônus: 1 Cartão NFC do Google Físico</li>
             </ul>
 
             <a 

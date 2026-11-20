@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Star, TrendingUp, Users, MessageSquare, Quote } from 'lucide-react';
+import { Star, TrendingUp, Users, MessageSquare, Quote, Target } from 'lucide-react';
 import Pricing from './components/Pricing';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -159,9 +159,30 @@ export default function PremiumLanding() {
               <span className="text-brandGold">Domine a Cidade.</span>
             </h1>
             
-            <p className="text-base sm:text-xl md:text-2xl text-white/90 max-w-2xl font-medium mb-10 leading-relaxed drop-shadow-lg">
+            <p className="text-base sm:text-xl md:text-2xl text-white/90 max-w-2xl font-medium mb-8 leading-relaxed drop-shadow-lg">
               A plataforma definitiva para lojistas de Niterói que querem <span className="text-brandGold font-bold">lotar o WhatsApp de clientes reais</span>, <span className="text-brandGold font-bold">sem deixar 27% de comissão</span> na mesa dos aplicativos.
             </p>
+
+            {/* CARD DE METAPROVA: SE VOCÊ VIU, O SEU CLIENTE TAMBÉM VÊ */}
+            <div className="p-5 sm:p-7 rounded-3xl bg-[#0B1528]/85 backdrop-blur-xl border border-brandGold/40 shadow-[0_12px_40px_rgba(0,0,0,0.6)] relative overflow-hidden">
+              <div className="absolute -top-10 -right-10 w-32 h-32 bg-brandGold/15 rounded-full blur-2xl pointer-events-none" />
+              <div className="flex items-start gap-3.5 sm:gap-4">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-2xl bg-brandGold/20 border border-brandGold/40 flex items-center justify-center shrink-0 text-brandGold shadow-sm mt-0.5">
+                  <Target size={22} />
+                </div>
+                <div>
+                  <span className="text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.22em] text-brandGold font-bold block mb-1">
+                    A Prova Viva • Você Está Aqui
+                  </span>
+                  <h2 className="font-montserrat text-lg sm:text-xl md:text-2xl font-bold uppercase text-white leading-snug">
+                    Se este anúncio encontrou você agora... <span className="text-brandGold">o seu cliente também vai ver a sua empresa.</span>
+                  </h2>
+                  <p className="text-white/80 text-xs sm:text-sm mt-2 leading-relaxed font-medium">
+                    Você não caiu nesta página por acaso. É exatamente a mesma tecnologia de tráfego ultra-segmentado em Niterói que nós usamos para atrair você que colocará a sua loja na frente de milhares de moradores no momento exato em que eles decidem onde comprar.
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </section>
 

@@ -1,4 +1,4 @@
-import { CheckCircle2 } from 'lucide-react';
+import { CheckCircle2, MessageSquare } from 'lucide-react';
 
 export default function Pricing() {
   return (
@@ -134,9 +134,9 @@ export default function Pricing() {
             href="https://wa.me/5521987147165?text=Ol%C3%A1!%20Estou%20na%20p%C3%A1gina%20de%20planos%20do%20Guia%20360%20Niter%C3%B3i%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20os%20an%C3%BAncios."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#20ba5a] text-white font-montserrat text-xs uppercase tracking-widest font-bold px-8 py-4 rounded-full transition-all duration-300 shadow-[0_4px_20px_rgba(37,211,102,0.35)] active:scale-95"
+            className="inline-flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-montserrat text-xs uppercase tracking-widest font-bold px-8 py-4 rounded-full transition-all duration-300 shadow-[0_4px_25px_rgba(16,185,129,0.35)] active:scale-95"
           >
-            <span className="text-lg">💬</span> Tirar Dúvidas pelo WhatsApp
+            <MessageSquare size={18} className="shrink-0" /> Tirar Dúvidas pelo WhatsApp
           </a>
         </div>
       </div>

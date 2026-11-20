@@ -102,9 +102,20 @@ export default function PremiumLanding() {
         if (images[targetFrame]) {
           renderFrame(images[targetFrame]!);
           lastRenderedFrame = targetFrame;
-        } else if (images[lastRenderedFrame]) {
-          // Mantém o último frame disponível sem piscar
-          renderFrame(images[lastRenderedFrame]!);
+        } else {
+          // Carrega com prioridade imediata o frame atual caso o usuário tenha rolado antes do batch
+          const priorityImg = new Image();
+          priorityImg.src = currentFrame(targetFrame);
+          priorityImg.onload = () => {
+            images[targetFrame] = priorityImg;
+            if (Math.round(obj.frame) === targetFrame) {
+              renderFrame(priorityImg);
+              lastRenderedFrame = targetFrame;
+            }
+          };
+          if (images[lastRenderedFrame]) {
+            renderFrame(images[lastRenderedFrame]!);
+          }
         }
       }
     });
@@ -117,15 +128,12 @@ export default function PremiumLanding() {
   return (
     <div ref={wrapperRef} className="text-white min-h-screen font-dmsans selection:bg-brandGold/30 overflow-x-hidden relative bg-[#060b13]">
       
-      {/* 1. BACKGROUND CANVAS (Fixo na tela, com imagem inicial instantânea de Niterói) */}
-      <div 
-        className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden pointer-events-none bg-[#060b13] bg-cover bg-center"
-        style={{ backgroundImage: 'url(/frames/0001.jpg)' }}
-      >
-        <canvas ref={canvasRef} className="w-full h-full object-cover opacity-60" />
+      {/* 1. BACKGROUND CANVAS (Fixo na tela, renderiza os frames 100% nítidos e limpos) */}
+      <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden pointer-events-none bg-[#060b13]">
+        <canvas ref={canvasRef} className="w-full h-full object-cover" />
         
-        {/* Overlay escuro para dar contraste e leitura perfeita */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#060b13]/60 via-[#060b13]/30 to-[#060b13]/70" />
+        {/* Overlay escuro equilibrado para dar leitura aos textos sem criar sombra na transição */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#060b13]/40 via-transparent to-[#060b13]/50 pointer-events-none" />
       </div>
 
       {/* CONTEÚDO DA PÁGINA (Transparente para o fundo do drone aparecer) */}
@@ -182,6 +190,25 @@ export default function PremiumLanding() {
                   </p>
                 </div>
               </div>
+            </div>
+
+            {/* CTAs da Hero: Conhecer Planos & WhatsApp no Verde Padrão */}
+            <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+              <a 
+                href="#planos" 
+                className="bg-brandGold text-brandDark px-7 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(212,175,55,0.4)] active:scale-95 text-center flex items-center justify-center min-h-[48px]"
+              >
+                Conhecer os Planos
+              </a>
+              <a
+                href="https://wa.me/5521987147165?text=Ol%C3%A1!%20Vi%20o%20Guia%20360%20Niter%C3%B3i%20e%20gostaria%20de%20saber%20como%20anunciar%20minha%20empresa."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-500 text-white px-7 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-[0_4px_20px_rgba(16,185,129,0.35)] active:scale-95 text-center min-h-[48px]"
+              >
+                <MessageSquare size={16} className="shrink-0" />
+                Falar no WhatsApp
+              </a>
             </div>
           </div>
         </section>
@@ -304,7 +331,7 @@ export default function PremiumLanding() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Falar no WhatsApp"
-            className="size-11 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:opacity-90 transition-all shrink-0 active:scale-95 shadow-md min-h-[44px] min-w-[44px]"
+            className="size-11 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white flex items-center justify-center transition-all shrink-0 active:scale-95 shadow-lg shadow-emerald-950/40 min-h-[44px] min-w-[44px]"
           >
             <MessageSquare size={20} />
           </a>

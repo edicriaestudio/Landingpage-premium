@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { Star, TrendingUp, Users, MessageSquare, Quote } from 'lucide-react';
 import Pricing from './components/Pricing';
 import gsap from 'gsap';
@@ -18,7 +18,6 @@ const testimonials = [
 export default function PremiumLanding() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const wrapperRef = useRef<HTMLDivElement>(null);
-  const [imagesLoaded, setImagesLoaded] = useState(0);
   const frameCount = 480;
 
   useEffect(() => {
@@ -34,24 +33,9 @@ export default function PremiumLanding() {
     const currentFrame = (index: number) => 
       `/frames/${(index + 1).toString().padStart(4, '0')}.jpg`;
 
-    const images: HTMLImageElement[] = [];
+    const images: (HTMLImageElement | null)[] = new Array(frameCount).fill(null);
+    let lastRenderedFrame = 0;
     const obj = { frame: 0 };
-    let loaded = 0;
-
-    // Pré-carregamento dos 480 frames
-    for (let i = 0; i < frameCount; i++) {
-      const img = new Image();
-      img.src = currentFrame(i);
-      img.onload = () => {
-        loaded++;
-        setImagesLoaded(Math.floor((loaded / frameCount) * 100));
-        // Draw the first frame once loaded
-        if (loaded === 1 && i === 0) {
-          renderFrame(img);
-        }
-      };
-      images.push(img);
-    }
 
     const renderFrame = (img: HTMLImageElement) => {
       // Cover crop effect
@@ -65,6 +49,38 @@ export default function PremiumLanding() {
       context.drawImage(img, 0, 0, img.width, img.height,
                         centerShift_x, centerShift_y, img.width * ratio, img.height * ratio);
     };
+
+    // 1. CARREGAMENTO IMEDIATO DO FRAME 1 (Renderização Instantânea sem tela de espera)
+    const firstImg = new Image();
+    firstImg.src = currentFrame(0);
+    firstImg.onload = () => {
+      images[0] = firstImg;
+      renderFrame(firstImg);
+    };
+
+    // 2. CARREGAMENTO PROGRESSIVO EM SEGUNDO PLANO (Sem travar o usuário)
+    // Carrega em lotes graduais para não saturar a rede
+    let currentIndex = 1;
+    const loadBatch = () => {
+      const batchLimit = Math.min(currentIndex + 10, frameCount);
+      for (let i = currentIndex; i < batchLimit; i++) {
+        const img = new Image();
+        img.src = currentFrame(i);
+        img.onload = () => {
+          images[i] = img;
+        };
+      }
+      currentIndex = batchLimit;
+      if (currentIndex < frameCount) {
+        if ('requestIdleCallback' in window) {
+          (window as any).requestIdleCallback(loadBatch, { timeout: 200 });
+        } else {
+          setTimeout(loadBatch, 80);
+        }
+      }
+    };
+    // Inicia o stream suave em background
+    setTimeout(loadBatch, 100);
 
     // GSAP ScrollTrigger timeline matching the entire page wrapper height
     let tl = gsap.timeline({
@@ -81,8 +97,14 @@ export default function PremiumLanding() {
       snap: "frame",
       ease: "none",
       onUpdate: () => {
-        if (images[obj.frame]) {
-          renderFrame(images[obj.frame]);
+        const targetFrame = Math.round(obj.frame);
+        // Se o frame exato já estiver carregado, desenha ele
+        if (images[targetFrame]) {
+          renderFrame(images[targetFrame]!);
+          lastRenderedFrame = targetFrame;
+        } else if (images[lastRenderedFrame]) {
+          // Mantém o último frame disponível sem piscar
+          renderFrame(images[lastRenderedFrame]!);
         }
       }
     });
@@ -95,53 +117,49 @@ export default function PremiumLanding() {
   return (
     <div ref={wrapperRef} className="text-white min-h-screen font-dmsans selection:bg-brandGold/30 overflow-x-hidden relative bg-[#060b13]">
       
-      {/* 1. BACKGROUND CANVAS (Fixo na tela, renderiza os frames) */}
-      <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden pointer-events-none bg-[#060b13]">
+      {/* 1. BACKGROUND CANVAS (Fixo na tela, com imagem inicial instantânea de Niterói) */}
+      <div 
+        className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden pointer-events-none bg-[#060b13] bg-cover bg-center"
+        style={{ backgroundImage: 'url(/frames/0001.jpg)' }}
+      >
         <canvas ref={canvasRef} className="w-full h-full object-cover opacity-60" />
         
-        {/* Loading overlay - some enquanto as imagens carregam */}
-        {imagesLoaded < 100 && (
-          <div className="absolute inset-0 flex items-center justify-center bg-[#060b13] z-10 transition-opacity duration-500">
-            <div className="text-brandGold font-montserrat text-xl uppercase tracking-widest flex flex-col items-center">
-              <span>Carregando Experiência...</span>
-              <span className="mt-2 text-4xl">{imagesLoaded}%</span>
-            </div>
-          </div>
-        )}
-
-        {/* Overlay escuro para dar contraste */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#060b13]/40 via-transparent to-[#060b13]/50" />
+        {/* Overlay escuro para dar contraste e leitura perfeita */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#060b13]/60 via-[#060b13]/30 to-[#060b13]/70" />
       </div>
 
-      {/* CONTEÚDO DA PÁGINA (Transparente para o fundo aparecer) */}
+      {/* CONTEÚDO DA PÁGINA (Transparente para o fundo do drone aparecer) */}
       <div className="relative z-10">
         
-        {/* Navbar */}
-        <nav className="absolute top-0 left-0 w-full p-6 flex justify-between items-center pointer-events-none">
-          <div className="flex items-center gap-3">
-            <img src="/logo.png" alt="Guia 360" className="w-14 h-14 object-contain" />
-            <span className="font-montserrat text-xl uppercase font-bold tracking-widest drop-shadow-md">
+        {/* Navbar Superior Otimizada para Mobile e Desktop */}
+        <nav className="absolute top-0 left-0 w-full p-4 sm:p-6 flex justify-between items-center pointer-events-none z-30">
+          <div className="flex items-center gap-2.5 sm:gap-3 pointer-events-auto">
+            <img src="/logo.png" alt="Guia 360" className="w-10 h-10 sm:w-14 sm:h-14 object-contain drop-shadow-[0_0_12px_rgba(212,175,55,0.4)]" />
+            <span className="font-montserrat text-sm sm:text-xl uppercase font-bold tracking-widest drop-shadow-md">
               <span className="text-brandGold">Guia 360</span> <span className="text-white">Niterói</span>
             </span>
           </div>
-          <a href="#planos" className="bg-brandGold text-brandDark px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white transition-all pointer-events-auto shadow-[0_0_15px_rgba(212,175,55,0.3)]">
+          <a 
+            href="#planos" 
+            className="bg-brandGold text-brandDark px-4 sm:px-6 py-2.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest hover:bg-white transition-all pointer-events-auto shadow-[0_0_15px_rgba(212,175,55,0.3)] active:scale-95 flex items-center min-h-[40px]"
+          >
             Ver Planos
           </a>
         </nav>
 
-        {/* 2. HERO */}
-        <section className="min-h-[120vh] flex items-center pt-24 pb-32 px-6 sm:px-12 lg:px-24">
+        {/* 2. HERO — Tipografia Fluida e Perfeita em Qualquer Celular */}
+        <section className="min-h-[110vh] flex items-center pt-24 pb-28 px-5 sm:px-12 lg:px-24">
           <div className="max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brandGold/20 border border-brandGold/50 text-brandGold text-xs font-bold tracking-widest shadow-sm uppercase mb-8 backdrop-blur-md">
-              <Star size={14} /> O Maior Guia Comercial de Niterói
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brandGold/20 border border-brandGold/50 text-brandGold text-[11px] sm:text-xs font-bold tracking-widest shadow-sm uppercase mb-6 backdrop-blur-md">
+              <Star size={13} className="shrink-0" /> O Maior Guia Comercial de Niterói
             </div>
             
-            <h1 className="font-montserrat text-5xl md:text-7xl lg:text-[5.5rem] uppercase font-extrabold leading-[1.05] mb-8 drop-shadow-2xl">
+            <h1 className="font-montserrat text-[clamp(2.1rem,6.2vw,5.2rem)] uppercase font-extrabold leading-[1.08] mb-6 drop-shadow-2xl">
               Liberte-se das Taxas. <br />
               <span className="text-brandGold">Domine a Cidade.</span>
             </h1>
             
-            <p className="text-xl md:text-2xl text-white/90 max-w-2xl font-medium mb-12 leading-relaxed drop-shadow-lg">
+            <p className="text-base sm:text-xl md:text-2xl text-white/90 max-w-2xl font-medium mb-10 leading-relaxed drop-shadow-lg">
               A plataforma definitiva para lojistas de Niterói que querem <span className="text-brandGold font-bold">lotar o WhatsApp de clientes reais</span>, <span className="text-brandGold font-bold">sem deixar 27% de comissão</span> na mesa dos aplicativos.
             </p>
           </div>
@@ -251,6 +269,25 @@ export default function PremiumLanding() {
             </div>
           </div>
         </footer>
+
+        {/* 7. NAVEGAÇÃO DE POLEGAR FLUTUANTE (MOBILE-FIRST) */}
+        <div className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 w-[92%] max-w-sm flex items-center justify-between gap-2.5 p-2 bg-[#0B1528]/90 backdrop-blur-xl border border-brandGold/40 rounded-full shadow-[0_10px_35px_rgba(0,0,0,0.7)] sm:hidden">
+          <a
+            href="#planos"
+            className="flex-1 flex items-center justify-center gap-2 bg-brandGold text-brandDark px-4 py-3 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-white transition-all shadow-md active:scale-95 min-h-[44px]"
+          >
+            Ver Planos & Preços
+          </a>
+          <a
+            href="https://wa.me/5521987147165?text=Ol%C3%A1!%20Vi%20a%20p%C3%A1gina%20de%20an%C3%BAncios%20do%20Guia%20360%20Niter%C3%B3i%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20os%20planos."
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Falar no WhatsApp"
+            className="size-11 rounded-full bg-[#25D366] text-white flex items-center justify-center hover:opacity-90 transition-all shrink-0 active:scale-95 shadow-md min-h-[44px] min-w-[44px]"
+          >
+            <MessageSquare size={20} />
+          </a>
+        </div>
 
       </div>
     </div>

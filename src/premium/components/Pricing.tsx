@@ -64,6 +64,15 @@ export default function Pricing() {
               href="https://mpago.la/1ka6TB8"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).fbq) {
+                  (window as any).fbq('track', 'InitiateCheckout', {
+                    content_name: 'Plano Destaque',
+                    value: 97,
+                    currency: 'BRL',
+                  });
+                }
+              }}
               className="w-full py-3 rounded-xl font-montserrat uppercase tracking-widest font-bold text-xs bg-brandGold text-brandDark hover:bg-white transition-all duration-300 text-center block"
             >
               Assinar Destaque
@@ -93,12 +102,42 @@ export default function Pricing() {
               href="https://mpago.la/2dahgJD"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).fbq) {
+                  (window as any).fbq('track', 'InitiateCheckout', {
+                    content_name: 'Plano Patrocinado',
+                    value: 297,
+                    currency: 'BRL',
+                  });
+                }
+              }}
               className="w-full py-3 rounded-xl font-montserrat uppercase tracking-widest font-bold text-xs bg-white/5 text-white border border-white/20 hover:bg-white hover:text-brandDark transition-all duration-300 text-center block"
             >
               Assinar Enterprise
             </a>
           </div>
 
+        </div>
+
+        {/* Bloco de Atendimento e Dúvidas Comerciais no WhatsApp */}
+        <div className="mt-14 max-w-2xl mx-auto p-6 md:p-8 rounded-3xl bg-[#0B1528]/80 backdrop-blur-xl border border-brandGold/30 text-center shadow-2xl">
+          <p className="text-brandGold font-montserrat text-xs uppercase tracking-widest font-bold mb-2">
+            Atendimento Direto com Especialista
+          </p>
+          <h4 className="text-xl md:text-2xl font-montserrat font-bold text-white mb-3">
+            Ficou com alguma dúvida sobre como anunciar?
+          </h4>
+          <p className="text-white/80 text-sm leading-relaxed mb-6 font-medium">
+            Fale diretamente com a equipe do Guia 360 Niterói pelo WhatsApp. Respondemos sobre emissão de notas, personalização de planos e inclusão de fotos da sua loja.
+          </p>
+          <a
+            href="https://wa.me/5521987147165?text=Ol%C3%A1!%20Estou%20na%20p%C3%A1gina%20de%20planos%20do%20Guia%20360%20Niter%C3%B3i%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20os%20an%C3%BAncios."
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-3 bg-[#25D366] hover:bg-[#20ba5a] text-white font-montserrat text-xs uppercase tracking-widest font-bold px-8 py-4 rounded-full transition-all duration-300 shadow-[0_4px_20px_rgba(37,211,102,0.35)] active:scale-95"
+          >
+            <span className="text-lg">💬</span> Tirar Dúvidas pelo WhatsApp
+          </a>
         </div>
       </div>
     </section>

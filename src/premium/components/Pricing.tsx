@@ -35,6 +35,13 @@ export default function Pricing() {
               href="https://www.guia360niteroi.com.br/cadastrar"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).fbq) {
+                  (window as any).fbq('track', 'Lead', {
+                    content_name: 'Plano Grátis - Cadastro',
+                  });
+                }
+              }}
               className="w-full py-3 rounded-xl font-montserrat uppercase tracking-widest font-bold text-xs bg-white/5 text-white border border-white/20 hover:bg-white hover:text-brandDark transition-all duration-300 text-center block"
             >
               Criar Conta Grátis
@@ -134,6 +141,13 @@ export default function Pricing() {
             href="https://wa.me/5521987147165?text=Ol%C3%A1!%20Estou%20na%20p%C3%A1gina%20de%20planos%20do%20Guia%20360%20Niter%C3%B3i%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20os%20an%C3%BAncios."
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => {
+              if (typeof window !== 'undefined' && (window as any).fbq) {
+                (window as any).fbq('track', 'Contact', {
+                  content_name: 'WhatsApp Pricing Dúvidas',
+                });
+              }
+            }}
             className="inline-flex items-center justify-center gap-2.5 bg-brandGold hover:bg-white text-brandDark font-montserrat text-xs uppercase tracking-widest font-extrabold px-8 py-4 rounded-full transition-all duration-300 shadow-[0_4px_25px_rgba(208,255,20,0.4)] active:scale-95"
           >
             <MessageSquare size={18} className="shrink-0" /> Tirar Dúvidas pelo WhatsApp

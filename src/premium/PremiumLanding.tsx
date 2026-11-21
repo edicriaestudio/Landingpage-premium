@@ -204,6 +204,11 @@ export default function PremiumLanding() {
                 href="https://wa.me/5521987147165?text=Ol%C3%A1!%20Vi%20o%20Guia%20360%20Niter%C3%B3i%20e%20gostaria%20de%20saber%20como%20anunciar%20minha%20empresa."
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).fbq) {
+                    (window as any).fbq('track', 'Contact', { content_name: 'WhatsApp Hero' });
+                  }
+                }}
                 className="inline-flex items-center justify-center gap-2.5 bg-brandGold hover:bg-white text-brandDark px-7 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-[0_4px_20px_rgba(208,255,20,0.4)] active:scale-95 text-center min-h-[48px]"
               >
                 <MessageSquare size={16} className="shrink-0" />
@@ -331,6 +336,11 @@ export default function PremiumLanding() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Falar no WhatsApp"
+            onClick={() => {
+              if (typeof window !== 'undefined' && (window as any).fbq) {
+                (window as any).fbq('track', 'Contact', { content_name: 'WhatsApp Mobile Floating' });
+              }
+            }}
             className="size-11 rounded-full bg-brandGold hover:bg-white text-brandDark flex items-center justify-center transition-all shrink-0 active:scale-95 shadow-lg shadow-emerald-950/40 min-h-[44px] min-w-[44px]"
           >
             <MessageSquare size={20} />

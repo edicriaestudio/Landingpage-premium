@@ -30,15 +30,16 @@
       s.parentNode.insertBefore(t,s)}(window, document,'script',
       'https://connect.facebook.net/en_US/fbevents.js');
       
-      // ID do Meta Pixel configurável
-      window.__META_PIXEL_ID__ = window.__META_PIXEL_ID__ || '';
-      if (window.__META_PIXEL_ID__) {
-        fbq('init', window.__META_PIXEL_ID__);
-        fbq('track', 'PageView');
-      }
+      fbq('init', '1563419550994596');
+      fbq('track', 'PageView');
     </script>
+    <!-- End Meta Pixel Code -->
   </head>
   <body class="overflow-x-hidden min-h-screen">
+    <noscript>
+      <img height="1" width="1" style="display:none" 
+           src="https://www.facebook.com/tr?id=1563419550994596&ev=PageView&noscript=1"/>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

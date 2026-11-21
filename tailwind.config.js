@@ -11,9 +11,9 @@ export default {
       },
       colors: {
         brandBlue: '#0ea5e9',
-        brandGreen: '#00FF66', // Fluorescent neon green
+        brandGreen: '#D0FF14', // Cyber Lime / Volt da referência enviada pelo usuário
         brandDark: '#0B1528', // Dark Navy from logo
-        brandGold: '#00FF66', // Mudado de amarelo para verde fluorescente conforme solicitado
+        brandGold: '#D0FF14', // Cyber Lime / Volt da referência enviada pelo usuário
         brandLight: '#ffffff',
       },
       animation: {

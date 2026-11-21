@@ -142,14 +142,14 @@ export default function PremiumLanding() {
         {/* Navbar Superior Otimizada para Mobile e Desktop */}
         <nav className="absolute top-0 left-0 w-full p-4 sm:p-6 flex justify-between items-center pointer-events-none z-30">
           <div className="flex items-center gap-2.5 sm:gap-3 pointer-events-auto">
-            <img src="/logo.png" alt="Guia 360" className="w-10 h-10 sm:w-14 sm:h-14 object-contain drop-shadow-[0_0_12px_rgba(0,255,102,0.4)]" />
+            <img src="/logo.png" alt="Guia 360" className="w-10 h-10 sm:w-14 sm:h-14 object-contain drop-shadow-[0_0_12px_rgba(208,255,20,0.4)]" />
             <span className="font-montserrat text-sm sm:text-xl uppercase font-bold tracking-widest drop-shadow-md">
               <span className="text-brandGold">Guia 360</span> <span className="text-white">Niterói</span>
             </span>
           </div>
           <a 
             href="#planos" 
-            className="bg-brandGold text-brandDark px-4 sm:px-6 py-2.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest hover:bg-white transition-all pointer-events-auto shadow-[0_0_15px_rgba(0,255,102,0.3)] active:scale-95 flex items-center min-h-[40px]"
+            className="bg-brandGold text-brandDark px-4 sm:px-6 py-2.5 rounded-full text-[11px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest hover:bg-white transition-all pointer-events-auto shadow-[0_0_15px_rgba(208,255,20,0.3)] active:scale-95 flex items-center min-h-[40px]"
           >
             Ver Planos
           </a>
@@ -196,7 +196,7 @@ export default function PremiumLanding() {
             <div className="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
               <a 
                 href="#planos" 
-                className="bg-brandGold text-brandDark px-7 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(0,255,102,0.4)] active:scale-95 text-center flex items-center justify-center min-h-[48px]"
+                className="bg-brandGold text-brandDark px-7 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(208,255,20,0.4)] active:scale-95 text-center flex items-center justify-center min-h-[48px]"
               >
                 Conhecer os Planos
               </a>
@@ -204,7 +204,7 @@ export default function PremiumLanding() {
                 href="https://wa.me/5521987147165?text=Ol%C3%A1!%20Vi%20o%20Guia%20360%20Niter%C3%B3i%20e%20gostaria%20de%20saber%20como%20anunciar%20minha%20empresa."
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 bg-brandGold hover:bg-white text-brandDark px-7 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-[0_4px_20px_rgba(0,255,102,0.4)] active:scale-95 text-center min-h-[48px]"
+                className="inline-flex items-center justify-center gap-2.5 bg-brandGold hover:bg-white text-brandDark px-7 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest transition-all shadow-[0_4px_20px_rgba(208,255,20,0.4)] active:scale-95 text-center min-h-[48px]"
               >
                 <MessageSquare size={16} className="shrink-0" />
                 Falar no WhatsApp
@@ -297,7 +297,7 @@ export default function PremiumLanding() {
         {/* 6. FOOTER (Totalmente Transparente) */}
         <footer className="bg-transparent pt-16 pb-12 px-6 border-t border-brandGold/10 relative z-10">
           <div className="max-w-6xl mx-auto flex flex-col items-center text-center">
-            <img src="/logo.png" alt="Guia 360" className="w-24 h-24 object-contain mb-6 drop-shadow-[0_0_15px_rgba(0,255,102,0.4)]" />
+            <img src="/logo.png" alt="Guia 360" className="w-24 h-24 object-contain mb-6 drop-shadow-[0_0_15px_rgba(208,255,20,0.4)]" />
             
             <h2 className="font-montserrat text-3xl uppercase font-bold tracking-widest mb-4">
               <span className="text-brandGold">Guia 360</span> <span className="text-white">Niterói</span>

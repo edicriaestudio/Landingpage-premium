@@ -11,9 +11,9 @@ export default {
       },
       colors: {
         brandBlue: '#0ea5e9',
-        brandGreen: '#10b981',
+        brandGreen: '#00FF66', // Fluorescent neon green
         brandDark: '#0B1528', // Dark Navy from logo
-        brandGold: '#D4AF37', // Gold from logo
+        brandGold: '#00FF66', // Mudado de amarelo para verde fluorescente conforme solicitado
         brandLight: '#ffffff',
       },
       animation: {

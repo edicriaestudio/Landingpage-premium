@@ -9,7 +9,7 @@ export default function Pricing() {
             Escolha sua <span className="text-brandGold">Jornada</span>
           </h2>
           <p className="text-white/80 text-lg max-w-2xl mx-auto font-medium drop-shadow-md">
-            Planos desenhados para lojistas que querem transformar a visibilidade local em lucro real.
+            Planos desenhados para empresas, comércios, clínicas e profissionais que querem transformar a visibilidade local em lucro real.
           </p>
         </div>
 
@@ -18,7 +18,7 @@ export default function Pricing() {
           {/* Plano Gratuito */}
           <div className="bg-white/0 backdrop-blur-sm border border-white/5 rounded-3xl p-8 flex flex-col hover:border-brandGold/30 hover:bg-white/5 transition-all duration-300 relative shadow-2xl">
             <h3 className="text-xl text-white font-montserrat uppercase font-bold mb-2">Presença</h3>
-            <p className="text-white/60 mb-6 text-xs">O básico para sua loja existir digitalmente no nosso Guia.</p>
+            <p className="text-white/60 mb-6 text-xs">O básico para o seu negócio existir digitalmente no nosso Guia.</p>
             
             <div className="mb-6 flex items-end gap-1">
               <span className="text-5xl text-white font-montserrat font-bold drop-shadow-md">Grátis</span>
@@ -128,13 +128,13 @@ export default function Pricing() {
             Ficou com alguma dúvida sobre como anunciar?
           </h4>
           <p className="text-white/80 text-sm leading-relaxed mb-6 font-medium">
-            Fale diretamente com a equipe do Guia 360 Niterói pelo WhatsApp. Respondemos sobre emissão de notas, personalização de planos e inclusão de fotos da sua loja.
+            Fale diretamente com a equipe do Guia 360 Niterói pelo WhatsApp. Respondemos sobre emissão de notas, personalização de planos e inclusão de fotos do seu negócio.
           </p>
           <a
             href="https://wa.me/5521987147165?text=Ol%C3%A1!%20Estou%20na%20p%C3%A1gina%20de%20planos%20do%20Guia%20360%20Niter%C3%B3i%20e%20gostaria%20de%20tirar%20uma%20d%C3%BAvida%20sobre%20os%20an%C3%BAncios."
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-montserrat text-xs uppercase tracking-widest font-bold px-8 py-4 rounded-full transition-all duration-300 shadow-[0_4px_25px_rgba(16,185,129,0.35)] active:scale-95"
+            className="inline-flex items-center justify-center gap-2.5 bg-brandGold hover:bg-white text-brandDark font-montserrat text-xs uppercase tracking-widest font-extrabold px-8 py-4 rounded-full transition-all duration-300 shadow-[0_4px_25px_rgba(0,255,102,0.4)] active:scale-95"
           >
             <MessageSquare size={18} className="shrink-0" /> Tirar Dúvidas pelo WhatsApp
           </a>
